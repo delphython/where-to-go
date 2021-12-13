@@ -10,3 +10,16 @@ class Place(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Image(models.Model):
+    place = models.ForeignKey(
+        to="places.Place",
+        verbose_name="Куда пойти",
+        on_delete=models.PROTECT,
+    )
+    image_file = models.ImageField("Картинка")
+    image_order = models.IntegerField("Порядок сортировки")
+
+    def __str__(self):
+        return f"{self.image_order} {self.place}"

@@ -1,14 +1,13 @@
 from django.contrib import admin
 
-from places.models import Place
+from places.models import Place, Image
 
 
 @admin.register(Place)
 class PlaceAdmin(admin.ModelAdmin):
-    list_display = (
-        "title",
-        "description_short",
-        "description_Long",
-        "coordinates_lng",
-        "coordinates_lat",
-    )
+    list_display = ("title",)
+
+
+@admin.register(Image)
+class ImageAdmin(admin.ModelAdmin):
+    pass
