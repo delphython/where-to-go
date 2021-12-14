@@ -31,4 +31,5 @@ def index(request):
         }
       ]
     }
+    print("Hello!")
     return render(request, "index.html", context=places)
