@@ -46,7 +46,7 @@ def place_view(request, place_id):
     place = get_object_or_404(Place, pk=place_id)
 
     context = {
-        "places": geo_json_places,
+        "place": place,
     }
 
-    return render(request, "index.html", context=context)
+    return render(request, "places.html", context=context)
