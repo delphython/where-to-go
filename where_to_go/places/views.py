@@ -1,5 +1,6 @@
 import uuid
 
+from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 
 from .models import Place
@@ -33,6 +34,16 @@ def index(request):
         "type": "FeatureCollection",
         "features": features,
     }
+
+    context = {
+        "places": geo_json_places,
+    }
+
+    return render(request, "index.html", context=context)
+
+
+def place_view(request, place_id):
+    place = get_object_or_404(Place, pk=place_id)
 
     context = {
         "places": geo_json_places,
