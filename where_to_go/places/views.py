@@ -1,3 +1,5 @@
+import uuid
+
 from django.shortcuts import render
 
 from .models import Place
@@ -5,45 +7,35 @@ from .models import Place
 
 def index(request):
     features = []
-    geo_json_template = {
-        "type": "FeatureCollection",
-        "features": [],
-    }
 
-    # places = Place.objects.all()
+    places = Place.objects.all()
 
-    places = {
-        "type": "FeatureCollection",
-        "features": [
+    for place in places:
+        features.append(
             {
                 "type": "Feature",
                 "geometry": {
                     "type": "Point",
-                    "coordinates": [37.62, 55.793676],
+                    "coordinates": [
+                        place.coordinates_lng,
+                        place.coordinates_lat,
+                    ],
                 },
                 "properties": {
-                    "title": "Легенды Москвы",
-                    "placeId": "moscow_legends",
-                    "detailsUrl": "{% static '/places/moscow_legends.json' %}",
+                    "title": place.title,
+                    "placeId": uuid.uuid4(),
+                    "detailsUrl": "",
                 },
-            },
-            {
-                "type": "Feature",
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [37.64, 55.753676],
-                },
-                "properties": {
-                    "title": "Крыши24.рф",
-                    "placeId": "roofs24",
-                    "detailsUrl": "{% static '/places/roofs24.json' %}",
-                },
-            },
-        ],
+            }
+        )
+
+    geo_json_places = {
+        "type": "FeatureCollection",
+        "features": features,
     }
 
     context = {
-        "places": places,
+        "places": geo_json_places,
     }
 
     return render(request, "index.html", context=context)
