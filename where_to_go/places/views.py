@@ -1,10 +1,10 @@
 import json
 import uuid
 
-from django.core import serializers
 from django.http.response import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
+from django.urls import reverse
 
 from .models import Place, Image
 
@@ -47,7 +47,7 @@ def index(request):
                 "properties": {
                     "title": place.title,
                     "placeId": uuid.uuid4(),
-                    "detailsUrl": get_place_properties(place),
+                    "detailsUrl": reverse("details-url", args=[place.id]),
                 },
             }
         )
