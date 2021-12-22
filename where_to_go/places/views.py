@@ -1,9 +1,31 @@
+import json
 import uuid
 
+from django.core import serializers
+from django.http.response import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 
-from .models import Place
+from .models import Place, Image
+
+
+def get_place_properties(place):
+    imgs = [
+        images.image_file.url for images in Image.objects.filter(place=place)
+    ]
+
+    url_details = {
+        "title": place.title,
+        "imgs": imgs,
+        "description_short": place.description_short,
+        "description_long": place.description_Long,
+        "coordinates": {
+            "lat": place.coordinates_lng,
+            "lng": place.coordinates_lat,
+        },
+    }
+
+    return url_details
 
 
 def index(request):
@@ -25,7 +47,7 @@ def index(request):
                 "properties": {
                     "title": place.title,
                     "placeId": uuid.uuid4(),
-                    "detailsUrl": "",
+                    "detailsUrl": get_place_properties(place),
                 },
             }
         )
@@ -45,8 +67,11 @@ def index(request):
 def place_view(request, place_id):
     place = get_object_or_404(Place, pk=place_id)
 
-    context = {
-        "place": place,
-    }
-
-    return render(request, "places.html", context=context)
+    return HttpResponse(
+        json.dumps(
+            get_place_properties(place),
+            ensure_ascii=False,
+            indent=4,
+        ),
+        content_type="application/json",
+    )
