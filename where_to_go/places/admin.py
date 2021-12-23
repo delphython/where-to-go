@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.safestring import mark_safe
 
 from places.models import Place, Image
 
@@ -17,4 +18,14 @@ class PlaceAdmin(admin.ModelAdmin):
 
 @admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):
-    pass
+    fields = ("image_file", "headshot_image", "image_order")
+    readonly_fields = ["headshot_image"]
+
+    def headshot_image(self, obj):
+        return mark_safe(
+            '<img src="{url}" width="{width}" height={height} />'.format(
+                url=obj.headshot.url,
+                width=obj.headshot.width,
+                height=obj.headshot.height,
+            )
+        )
