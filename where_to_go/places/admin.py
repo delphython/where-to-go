@@ -1,11 +1,12 @@
 from django.contrib import admin
-from django.utils.safestring import mark_safe
 
 from places.models import Place, Image
 
 
 class ImageInline(admin.TabularInline):
     model = Image
+    readonly_fields = ["image_preview"]
+    fields = ("image_file", "image_preview", "image_order")
 
 
 @admin.register(Place)
@@ -18,14 +19,11 @@ class PlaceAdmin(admin.ModelAdmin):
 
 @admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):
-    fields = ("image_file", "headshot_image", "image_order")
-    readonly_fields = ["headshot_image"]
+    def image_preview(self, obj):
+        return obj.image_preview
 
-    def headshot_image(self, obj):
-        return mark_safe(
-            '<img src="{url}" width="{width}" height={height} />'.format(
-                url=obj.headshot.url,
-                width=obj.headshot.width,
-                height=obj.headshot.height,
-            )
-        )
+    readonly_fields = ["image_preview"]
+    fields = ("image_file", "image_preview", "image_order")
+
+    image_preview.short_description = "Image Preview"
+    image_preview.allow_tags = True
