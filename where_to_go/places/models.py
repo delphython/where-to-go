@@ -1,11 +1,13 @@
 from django.db import models
 from django.utils.html import mark_safe
 
+from tinymce.models import HTMLField
+
 
 class Place(models.Model):
     title = models.CharField("Заголовок", max_length=200)
     description_short = models.CharField("Краткое описание", max_length=255)
-    description_Long = models.TextField("Полное описание")
+    description_Long = HTMLField("Полное описание")
     coordinates_lng = models.CharField("Координаты долгота", max_length=17)
     coordinates_lat = models.CharField("Координаты широта", max_length=17)
 
