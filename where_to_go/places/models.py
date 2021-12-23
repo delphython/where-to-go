@@ -20,7 +20,9 @@ class Image(models.Model):
         on_delete=models.PROTECT,
     )
     image_file = models.ImageField("Картинка")
-    image_order = models.IntegerField("Порядок сортировки")
+    image_order = models.PositiveIntegerField(
+        default=0, blank=False, null=False
+    )
 
     def __str__(self):
         return f"{self.image_order} {self.place}"
@@ -32,3 +34,6 @@ class Image(models.Model):
                 '<img src="{}" height="200" />'.format(self.image_file.url)
             )
         return ""
+
+    class Meta(object):
+        ordering = ["image_order"]
