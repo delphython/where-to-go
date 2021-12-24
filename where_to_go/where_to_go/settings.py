@@ -13,6 +13,10 @@ import os
 
 from pathlib import Path
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -21,12 +25,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = (
-    "django-insecure-v4%z%!u6(*w8=kyp#m0clk)xa63bh5t2x5bwpkv+hf=hcko2b&"
-)
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DEBUG", False)
 
 ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 
@@ -137,3 +139,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+# Secure settings
+SECURE_SSL_REDIRECT = os.getenv("SECURE_SSL_REDIRECT")
+SESSION_COOKIE_SECURE = os.getenv("SESSION_COOKIE_SECURE")
+CSRF_COOKIE_SECURE = os.getenv("CSRF_COOKIE_SECURE")
+SECURE_HSTS_SECONDS = os.getenv("SECURE_HSTS_SECONDS")
+SECURE_HSTS_INCLUDE_SUBDOMAINS = os.getenv("SECURE_HSTS_INCLUDE_SUBDOMAINS")
+SECURE_HSTS_PRELOAD = os.getenv("SECURE_HSTS_PRELOAD")
