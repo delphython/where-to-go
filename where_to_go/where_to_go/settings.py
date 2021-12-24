@@ -136,9 +136,7 @@ if DEBUG:
     STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 else:
     STATIC_URL = "/static/"
-    STATIC_ROOT = (
-        "/home/delphython/delphython.pythonanywhere.com/where_to_go/static/"
-    )
+    STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 
 MEDIA_URL = "/media/"
