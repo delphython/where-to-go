@@ -30,7 +30,7 @@ SECRET_KEY = (
 )
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DEBUG", False)
+DEBUG = os.getenv("DEBUG", True)
 
 ALLOWED_HOSTS = [
     "127.0.0.1",
@@ -133,11 +133,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 if DEBUG:
-    STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
-else:
     STATIC_URL = "/static/"
     STATIC_ROOT = os.path.join(BASE_DIR, "static")
-
+else:
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
@@ -150,9 +149,12 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 # Secure settings
-SECURE_SSL_REDIRECT = os.getenv("SECURE_SSL_REDIRECT")
-SESSION_COOKIE_SECURE = os.getenv("SESSION_COOKIE_SECURE")
-CSRF_COOKIE_SECURE = os.getenv("CSRF_COOKIE_SECURE")
-SECURE_HSTS_SECONDS = os.getenv("SECURE_HSTS_SECONDS")
-SECURE_HSTS_INCLUDE_SUBDOMAINS = os.getenv("SECURE_HSTS_INCLUDE_SUBDOMAINS")
-SECURE_HSTS_PRELOAD = os.getenv("SECURE_HSTS_PRELOAD")
+if not DEBUG:
+    SECURE_SSL_REDIRECT = os.getenv("SECURE_SSL_REDIRECT")
+    SESSION_COOKIE_SECURE = os.getenv("SESSION_COOKIE_SECURE")
+    CSRF_COOKIE_SECURE = os.getenv("CSRF_COOKIE_SECURE")
+    SECURE_HSTS_SECONDS = os.getenv("SECURE_HSTS_SECONDS")
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = os.getenv(
+        "SECURE_HSTS_INCLUDE_SUBDOMAINS"
+    )
+    SECURE_HSTS_PRELOAD = os.getenv("SECURE_HSTS_PRELOAD")
