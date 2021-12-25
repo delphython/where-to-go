@@ -41,7 +41,7 @@ python manage.py migrate
 python manage.py createsuperuser
 ```
 
-## Launch the app
+## Launch the site
 
 ```bash
 python manage.py runserver
@@ -51,6 +51,10 @@ Launch the [django admin site](https://delphython.pythonanywhere.com/admin) and 
 
 Launch the ["Where To Go" project stite](https://delphython.pythonanywhere.com/) and fill the database.
 
+To load place's data from json file run script:
+```bash
+python manage.py load_place http://your_site/your_json_file.json
+```
 
 ## Meta
 
