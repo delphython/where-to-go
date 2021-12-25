@@ -47,9 +47,9 @@ python manage.py createsuperuser
 python manage.py runserver
 ```
 
-Launch the [django admin site](https://127.0.0.1:8000/admin) and fill the database.
+Launch the [django admin site](https://delphython.pythonanywhere.com/admin) and fill the database.
 
-Launch the ["Where To Go" project stite](https://127.0.0.1:8000/) and fill the database.
+Launch the ["Where To Go" project stite](https://delphython.pythonanywhere.com/) and fill the database.
 
 
 ## Meta
