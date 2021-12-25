@@ -29,7 +29,7 @@ def get_image_file(image_url):
     return File(img_temp)
 
 
-def get_place_json_properties(json_url):
+def get_place_properties(json_url):
     response = requests.get(json_url)
     response.raise_for_status()
 
@@ -59,4 +59,4 @@ class Command(BaseCommand):
         parser.add_argument("json_file", type=str)
 
     def handle(self, *args, **options):
-        add_place(get_place_json_properties(options["json_file"]))
+        add_place(get_place_properties(options["json_file"]))
