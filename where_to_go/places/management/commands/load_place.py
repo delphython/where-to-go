@@ -36,19 +36,19 @@ def get_place_json_properties(json_url):
     return response.json()
 
 
-def add_place_to_db(place):
-    place_db = Place(
-        title=place["title"],
-        description_short=place["description_short"],
-        description_Long=place["description_long"],
-        coordinates_lng=place["coordinates"]["lng"],
-        coordinates_lat=place["coordinates"]["lat"],
+def add_place(place_properties):
+    place = Place(
+        title=place_properties["title"],
+        description_short=place_properties["description_short"],
+        description_Long=place_properties["description_long"],
+        coordinates_lng=place_properties["coordinates"]["lng"],
+        coordinates_lat=place_properties["coordinates"]["lat"],
     )
-    place_db.save()
+    place.save()
 
-    for image_url in place["imgs"]:
+    for image_url in place_properties["imgs"]:
         image = Image()
-        image.place = place_db
+        image.place = place
         image.image_file.save(
             get_file_name(image_url), get_image_file(image_url), save=True
         )
@@ -59,4 +59,4 @@ class Command(BaseCommand):
         parser.add_argument("json_file", type=str)
 
     def handle(self, *args, **options):
-        add_place_to_db(get_place_json_properties(options["json_file"]))
+        add_place(get_place_json_properties(options["json_file"]))
