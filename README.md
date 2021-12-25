@@ -4,7 +4,7 @@ This is an interactive map of Moscow, where you can view outdoor activities with
 
 ## Requirements
 
-Operating system: Microsoft Windows 7 or higher. Python3 should be installed. Use command line utility `cmd.exe` to run Python3 scripts.
+Python3 should be installed. Use command line utility `cmd.exe` to run Python3 scripts.
 
 ## Prerequisites
 
