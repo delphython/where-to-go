@@ -37,20 +37,23 @@ def get_place_properties(json_url):
 
 
 def add_place(place_properties):
-    place = Place.create(
+    place, is_created = Place.objects.get_or_create(
         title=place_properties["title"],
-        description_short=place_properties["description_short"],
-        description_Long=place_properties["description_long"],
-        coordinates_lng=place_properties["coordinates"]["lng"],
-        coordinates_lat=place_properties["coordinates"]["lat"],
+        defaults={
+            "description_short": place_properties["description_short"],
+            "description_long": place_properties["description_long"],
+            "coordinates_lng": place_properties["coordinates"]["lng"],
+            "coordinates_lat": place_properties["coordinates"]["lat"],
+        },
     )
 
-    for image_url in place_properties["imgs"]:
-        image = Image()
-        image.place = place
-        image.image_file.save(
-            get_file_name(image_url), get_image_file(image_url), save=True
-        )
+    if is_created:
+        for image_url in place_properties["imgs"]:
+            image = Image()
+            image.place = place
+            image.image_file.save(
+                get_file_name(image_url), get_image_file(image_url), save=True
+            )
 
 
 class Command(BaseCommand):
