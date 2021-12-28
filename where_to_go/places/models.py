@@ -39,7 +39,10 @@ class Image(models.Model):
     )
     image_file = models.ImageField("Картинка")
     image_order = models.PositiveIntegerField(
-        default=0, blank=False, null=False
+        verbose_name="СОртировка",
+        default=0,
+        blank=False,
+        null=False,
     )
 
     def __str__(self):
