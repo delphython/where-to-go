@@ -15,14 +15,14 @@ python -m pip install -r requirements.txt
 
 ## Installation
 
-1. Create  `.env` file in project directory and define your environment variables:
-**For developer mode:**
+1. Create  `.env` file in project directory and define your environment variables:  
+ **For developer mode:**
 
-DEBUG=True
+ DEBUG=True
 
-**For production mode:**
+ **For production mode:**
 
-DEBUG=False  
+ DEBUG=False  
 SECURE_SSL_REDIRECT=True  
 SESSION_COOKIE_SECURE=True  
 CSRF_COOKIE_SECURE=True  
