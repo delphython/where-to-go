@@ -14,7 +14,7 @@ def get_place_properties(place):
         images.image_file.url for images in Image.places.filter(place=place)
     ]
 
-    url_details = {
+    place_properties = {
         "title": place.title,
         "imgs": imgs,
         "description_short": place.description_short,
@@ -25,7 +25,7 @@ def get_place_properties(place):
         },
     }
 
-    return url_details
+    return place_properties
 
 
 def index(request):
