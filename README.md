@@ -16,6 +16,7 @@ python -m pip install -r requirements.txt
 ## Installation
 
 1. Create  `.env` file in project directory and define your environment variables:  
+  
 **For developer mode:**
 
 DEBUG=True
