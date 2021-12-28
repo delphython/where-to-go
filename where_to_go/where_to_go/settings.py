@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
 
+from django.core.management.utils import get_random_secret_key
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -25,9 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = (
-    "django-insecure-v4%z%!u6(*w8=kyp#m0clk)xa63bh5t2x5bwpkv+hf=hcko2b&"
-)
+SECRET_KEY = os.getenv("SECRET_KEY", get_random_secret_key)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", True)
@@ -147,12 +146,11 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 # Secure settings
-if not DEBUG:
-    SECURE_SSL_REDIRECT = os.getenv("SECURE_SSL_REDIRECT")
-    SESSION_COOKIE_SECURE = os.getenv("SESSION_COOKIE_SECURE")
-    CSRF_COOKIE_SECURE = os.getenv("CSRF_COOKIE_SECURE")
-    SECURE_HSTS_SECONDS = os.getenv("SECURE_HSTS_SECONDS")
-    SECURE_HSTS_INCLUDE_SUBDOMAINS = os.getenv(
-        "SECURE_HSTS_INCLUDE_SUBDOMAINS"
-    )
-    SECURE_HSTS_PRELOAD = os.getenv("SECURE_HSTS_PRELOAD")
+SECURE_SSL_REDIRECT = os.getenv("SECURE_SSL_REDIRECT", False)
+SESSION_COOKIE_SECURE = os.getenv("SESSION_COOKIE_SECURE", False)
+CSRF_COOKIE_SECURE = os.getenv("CSRF_COOKIE_SECURE", False)
+SECURE_HSTS_SECONDS = os.getenv("SECURE_HSTS_SECONDS", 60)
+SECURE_HSTS_INCLUDE_SUBDOMAINS = os.getenv(
+    "SECURE_HSTS_INCLUDE_SUBDOMAINS", False
+)
+SECURE_HSTS_PRELOAD = os.getenv("SECURE_HSTS_PRELOAD", False)
