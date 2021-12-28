@@ -11,7 +11,7 @@ from .models import Place, Image
 
 def get_place_properties(place):
     imgs = [
-        images.image_file.url for images in Image.objects.filter(place=place)
+        images.image_file.url for images in Image.places.filter(place=place)
     ]
 
     url_details = {
