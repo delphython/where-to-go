@@ -9,7 +9,7 @@ from django.urls import reverse
 from .models import Place, Image
 
 
-def get_place_properties(place):
+def serialize_place_properties(place):
     imgs = [
         images.image_file.url for images in Image.places.filter(place=place)
     ]
@@ -69,7 +69,7 @@ def place_view(request, place_id):
 
     return HttpResponse(
         json.dumps(
-            get_place_properties(place),
+            serialize_place_properties(place),
             ensure_ascii=False,
             indent=4,
         ),
