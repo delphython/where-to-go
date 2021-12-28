@@ -23,13 +23,21 @@ DEBUG=True
 **For production mode:**
 
 DEBUG=False
+
 SECURE_SSL_REDIRECT=True
+
 SESSION_COOKIE_SECURE=True
+
 CSRF_COOKIE_SECURE=True
+
 SECURE_HSTS_SECONDS=60
+
 SECRET_KEY="you-secret_key"
+
 SECURE_HSTS_INCLUDE_SUBDOMAINS=True
+
 SECURE_HSTS_PRELOAD=True
+
 
 2. Migrate the database
 ```bash
