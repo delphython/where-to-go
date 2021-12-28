@@ -37,14 +37,13 @@ def get_place_properties(json_url):
 
 
 def add_place(place_properties):
-    place = Place(
+    place = Place.create(
         title=place_properties["title"],
         description_short=place_properties["description_short"],
         description_Long=place_properties["description_long"],
         coordinates_lng=place_properties["coordinates"]["lng"],
         coordinates_lat=place_properties["coordinates"]["lat"],
     )
-    place.save()
 
     for image_url in place_properties["imgs"]:
         image = Image()
