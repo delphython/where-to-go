@@ -34,6 +34,7 @@ class Place(models.Model):
 class Image(models.Model):
     place = models.ForeignKey(
         to="places.Place",
+        related_name="places",
         verbose_name="Куда пойти",
         on_delete=models.PROTECT,
     )
