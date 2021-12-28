@@ -16,8 +16,16 @@ class Place(models.Model):
         null=True,
         blank=True,
     )
-    coordinates_lng = models.CharField("Координаты долгота", max_length=17)
-    coordinates_lat = models.CharField("Координаты широта", max_length=17)
+    coordinates_lng = models.DecimalField(
+        "Координаты долгота",
+        max_digits=22,
+        decimal_places=16,
+    )
+    coordinates_lat = models.DecimalField(
+        "Координаты широта",
+        max_digits=22,
+        decimal_places=16,
+    )
 
     def __str__(self):
         return self.title
