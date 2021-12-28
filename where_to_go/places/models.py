@@ -1,5 +1,5 @@
 from django.db import models
-from django.utils.html import mark_safe
+from django.utils.html import format_html
 
 from tinymce.models import HTMLField
 
@@ -52,7 +52,7 @@ class Image(models.Model):
     @property
     def image_preview(self):
         if self.image_file:
-            return mark_safe(
+            return format_html(
                 '<img src="{}" height="200" />'.format(self.image_file.url)
             )
         return ""
