@@ -16,21 +16,23 @@ python -m pip install -r requirements.txt
 ## Installation
 
 1. Create  `.env` file in project directory and define your environment variables:  
-  
+
 **For developer mode:**
 
-DEBUG=True
+DEBUG=True  
+SECRET_KEY="django-insecure-secret-key"  
+ALLOWED_HOSTS = "127.0.0.1 localhost"  
 
 **For production mode:**
 
 DEBUG=False  
-SECURE_SSL_REDIRECT=True  
-SESSION_COOKIE_SECURE=True  
-CSRF_COOKIE_SECURE=True  
-SECURE_HSTS_SECONDS=60  
-SECRET_KEY="you-secret_key"  
-SECURE_HSTS_INCLUDE_SUBDOMAINS=True  
-SECURE_HSTS_PRELOAD=True  
+SECRET_KEY="django-insecure-secret-key"  
+ALLOWED_HOSTS = "127.0.0.1 localhost yoursite.yourdomain.com"  
+
+**DEBUG** - a boolean that turns on/off debug mode. One of the main features of debug mode is the display of detailed error pages.  
+**ALLOWED_HOSTS** - a list of strings representing the host/domain names that this Django site can serve.  
+**SECRET_KEY** - a secret key for a particular Django installation. This is used to provide cryptographic signing, and should be set to a unique, unpredictable value.  
+
 
 2. Migrate the database
 ```bash
