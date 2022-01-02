@@ -1,5 +1,3 @@
-import uuid
-
 from django.http.response import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
@@ -43,7 +41,7 @@ def index(request):
                 },
                 "properties": {
                     "title": place.title,
-                    "placeId": uuid.uuid4(),
+                    "placeId": place.id,
                     "detailsUrl": reverse("details-url", args=[place.id]),
                 },
             }
