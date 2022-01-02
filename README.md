@@ -63,6 +63,30 @@ To load place's data from json file run script:
 python manage.py load_place http://your_site/your_json_file.json
 ```
 
+JSON file in the example above should be in this format:
+```sh
+{
+    "title": "Экскурсионный проект «Россия»",
+    "imgs": [
+        "https://url_to_your_image/1.jpg",
+        "https://url_to_your_image/2.jpg",
+        "https://url_to_your_image/3.jpg",
+    ],
+    "description_short": "Хотите увидеть Россию?",
+    "description_long": "<p>Экскурсионный проект «Россия» проводит экскурсии по России ...</p>",
+    "coordinates": {
+        "lat": 55.753676,
+        "lng": 37.641111
+    }
+}
+```
+JSON file is the data source with detailed information about the location, where  
+`title` - title of the location;  
+`imgs` - list of the location's images urls;  
+`description_short` - short description of the location;  
+`description_long` - long description of the location;  
+`coordinates` - GPS coordinates of the location.  
+
 ## Meta
 
 Vitaly Klyukin — [@delphython](https://t.me/delphython) — [delphython@gmail.com](mailto:delphython@gmail.com)
