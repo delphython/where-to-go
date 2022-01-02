@@ -19,15 +19,19 @@ python -m pip install -r requirements.txt
 
 **For developer mode:**
 
+```bash
 DEBUG=True  
 SECRET_KEY="django-insecure-secret-key"  
-ALLOWED_HOSTS = "127.0.0.1 localhost"  
+ALLOWED_HOSTS = "127.0.0.1 localhost"
+```  
 
 **For production mode:**
 
+```bash
 DEBUG=False  
 SECRET_KEY="django-insecure-secret-key"  
-ALLOWED_HOSTS = "127.0.0.1 localhost yoursite.yourdomain.com"  
+ALLOWED_HOSTS = "127.0.0.1 localhost yoursite.yourdomain.com"
+```  
 
 **DEBUG** - a boolean that turns on/off debug mode. One of the main features of debug mode is the display of detailed error pages.  
 **ALLOWED_HOSTS** - a list of strings representing the host/domain names that this Django site can serve.  
