@@ -49,8 +49,7 @@ def add_place(place_properties):
 
     if is_created:
         for image_url in place_properties["imgs"]:
-            image = Image()
-            image.place = place
+            image = Image(place=place)
             image.image_file.save(
                 get_file_name(image_url), get_image_file(image_url), save=True
             )
