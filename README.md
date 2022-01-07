@@ -87,11 +87,11 @@ JSON file in the example above should be in this format:
 }
 ```
 JSON file is the data source with detailed information about the location, where  
-`title` - title of the location;  
-`imgs` - list of the location's images urls;  
-`description_short` - short description of the location;  
-`description_long` - long description of the location;  
-`coordinates` - GPS coordinates of the location.  
+* `title` - title of the location;  
+* `imgs` - list of the location's images urls;  
+* `description_short` - short description of the location;  
+* `description_long` - long description of the location;  
+* `coordinates` - GPS coordinates of the location.  
 
 ## Meta
 
