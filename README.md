@@ -22,7 +22,7 @@ python -m pip install -r requirements.txt
 ```bash
 DEBUG=True  
 SECRET_KEY="django-insecure-secret-key"  
-ALLOWED_HOSTS = "127.0.0.1 localhost"
+ALLOWED_HOSTS="127.0.0.1 localhost"
 ```  
 
 **For production mode:**
