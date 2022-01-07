@@ -30,7 +30,7 @@ ALLOWED_HOSTS="127.0.0.1 localhost"
 ```bash
 DEBUG=False  
 SECRET_KEY="django-insecure-secret-key"  
-ALLOWED_HOSTS = "127.0.0.1 localhost yoursite.yourdomain.com"
+ALLOWED_HOSTS="127.0.0.1 localhost yoursite.yourdomain.com"
 ```  
 
 **DEBUG** - a boolean that turns on/off debug mode. One of the main features of debug mode is the display of detailed error pages. For production mode you should set it to `False`, for developer mode - `True`. The default in `settings.py` is `True`:
